@@ -7,10 +7,12 @@ export default createSchema((p) => ({
     submissionDeadline: p.bigint(),
     potAmount: p.bigint(),
     feeAmount: p.bigint(),
+    initRoundTxnHash: p.hex(),
     correctAnswer: p.bigint(),
     winningAnswer: p.bigint(),
     winners: p.hex().list(),
     isFinalized: p.boolean(),
+    setCorrectAnswerTxnHash: p.hex().optional(),
   }),
   Submission: p.createTable({
     id: p.hex(),

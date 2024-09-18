@@ -12,10 +12,12 @@ ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
       submissionDeadline: event.args.submissionDeadline,
       potAmount: event.args.potAmount,
       feeAmount: event.args.feeAmount,
+      initRoundTxnHash: event.transaction.hash,
       correctAnswer: 0n,
       winningAnswer: 0n,
       winners: [],
       isFinalized: false,
+      setCorrectAnswerTxnHash: undefined,
     },
   });
 });
@@ -50,6 +52,7 @@ ponder.on("Jellybeans:WinnerSelected", async ({ event, context }) => {
       ).entry,
       winners: event.args.winners.map((submission) => submission.submitter),
       isFinalized: true,
+      setCorrectAnswerTxnHash: event.transaction.hash,
     },
   });
 });
