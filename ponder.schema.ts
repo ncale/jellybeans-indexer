@@ -17,5 +17,6 @@ export default createSchema((p) => ({
     round: p.bigint(),
     submitter: p.hex(),
     entry: p.bigint(),
+    txnHash: p.hex(),
   }),
 }));
