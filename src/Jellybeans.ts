@@ -33,6 +33,7 @@ ponder.on("Jellybeans:GuessSubmitted", async ({ event, context }) => {
       round: event.args.roundId,
       submitter: event.args.submitter,
       entry: event.args.guess,
+      timestamp: event.block.timestamp,
       txnHash: event.transaction.hash,
     },
   });
