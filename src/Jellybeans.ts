@@ -48,9 +48,11 @@ ponder.on("Jellybeans:WinnerSelected", async ({ event, context }) => {
     id: event.args.roundId,
     data: {
       correctAnswer: event.args.correctAnswer,
-      winningAnswer: event.args.winners.reduce((a, b) =>
-        a.entry > b.entry ? a : b
-      ).entry,
+      winningAnswer:
+        event.args.winners.length !== 0
+          ? event.args.winners.reduce((a, b) => (a.entry > b.entry ? a : b))
+              .entry
+          : 0n,
       winners: event.args.winners.map((submission) => submission.submitter),
       isFinalized: true,
       setCorrectAnswerTxnHash: event.transaction.hash,
