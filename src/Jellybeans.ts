@@ -11,6 +11,7 @@ ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
       question: event.args.question,
       submissionDeadline: event.args.submissionDeadline,
       potAmount: event.args.potAmount,
+      decimals: 18,
       feeAmount: event.args.feeAmount,
       initRoundTxnHash: event.transaction.hash,
       correctAnswer: 0n,

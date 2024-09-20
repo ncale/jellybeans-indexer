@@ -6,6 +6,7 @@ export default createSchema((p) => ({
     question: p.string().optional(),
     submissionDeadline: p.bigint(),
     potAmount: p.bigint(),
+    decimals: p.int(),
     feeAmount: p.bigint(),
     initRoundTxnHash: p.hex(),
     correctAnswer: p.bigint(),
