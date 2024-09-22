@@ -1,7 +1,8 @@
 import { ponder } from "@/generated";
+import { logger } from "./pino";
 
 ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
-  console.log("Jellybeans:RoundInitialized");
+  logger.trace("Jellybeans:RoundInitialized");
 
   const { Round } = context.db;
 
@@ -24,12 +25,12 @@ ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 });
 
 ponder.on("Jellybeans:GuessSubmitted", async ({ event, context }) => {
-  console.log("Jellybeans:GuessSubmitted");
+  logger.trace("Jellybeans:GuessSubmitted");
 
   const { Submission, Round } = context.db;
 
@@ -59,12 +60,12 @@ ponder.on("Jellybeans:GuessSubmitted", async ({ event, context }) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 });
 
 ponder.on("Jellybeans:WinnerSelected", async ({ event, context }) => {
-  console.log("Jellybeans:WinnerSelected");
+  logger.trace("Jellybeans:WinnerSelected");
 
   const { Round } = context.db;
 
@@ -84,6 +85,6 @@ ponder.on("Jellybeans:WinnerSelected", async ({ event, context }) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 });
