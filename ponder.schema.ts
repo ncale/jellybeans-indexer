@@ -9,6 +9,8 @@ export default createSchema((p) => ({
     decimals: p.int(),
     feeAmount: p.bigint(),
     initRoundTxnHash: p.hex(),
+    submissions: p.many("Submission.roundId"),
+    submissionCount: p.int(),
     correctAnswer: p.bigint(),
     winningAnswer: p.bigint(),
     winners: p.hex().list(),
@@ -17,7 +19,7 @@ export default createSchema((p) => ({
   }),
   Submission: p.createTable({
     id: p.hex(),
-    round: p.bigint(),
+    roundId: p.bigint().references("Round.id"),
     submitter: p.hex(),
     entry: p.bigint(),
     timestamp: p.bigint(),

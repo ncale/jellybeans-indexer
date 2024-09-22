@@ -14,6 +14,7 @@ ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
       decimals: 18,
       feeAmount: event.args.feeAmount,
       initRoundTxnHash: event.transaction.hash,
+      submissionCount: 0,
       correctAnswer: 0n,
       winningAnswer: 0n,
       winners: [],
@@ -26,16 +27,30 @@ ponder.on("Jellybeans:RoundInitialized", async ({ event, context }) => {
 ponder.on("Jellybeans:GuessSubmitted", async ({ event, context }) => {
   console.log("Jellybeans:GuessSubmitted");
 
-  const { Submission } = context.db;
+  const { Submission, Round } = context.db;
 
   await Submission.create({
     id: event.transaction.hash,
     data: {
-      round: event.args.roundId,
+      roundId: event.args.roundId,
       submitter: event.args.submitter,
       entry: event.args.guess,
       timestamp: event.block.timestamp,
       txnHash: event.transaction.hash,
+    },
+  });
+
+  const data = await Round.findUnique({ id: event.args.roundId });
+  if (!data) {
+    throw new Error(
+      `Failed GuessSubmitted; Error finding round ${event.args.roundId}`
+    );
+  }
+
+  await Round.update({
+    id: event.args.roundId,
+    data: {
+      submissionCount: data.submissionCount + 1,
     },
   });
 });
