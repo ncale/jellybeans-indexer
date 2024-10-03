@@ -7,6 +7,7 @@ export default createSchema((p) => ({
     submissionDeadline: p.bigint(),
     potAmount: p.bigint(),
     decimals: p.int(),
+    numWinners: p.int(),
     feeAmount: p.bigint(),
     initRoundTxnHash: p.hex(),
     submissions: p.many("Submission.roundId"),
