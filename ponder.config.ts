@@ -1,7 +1,7 @@
 import { createConfig } from "@ponder/core";
 import { http } from "viem";
 
-import { JellybeansAbi } from "./abis/JellybeansAbi";
+import { JellyBeansAbi } from "./abis/JellyBeansAbi";
 
 export default createConfig({
   networks: {
@@ -12,10 +12,10 @@ export default createConfig({
   },
   contracts: {
     Jellybeans: {
-      abi: JellybeansAbi,
-      address: "0x9A34acbf83753c9a87D3b8EC721867146e67eBdC",
+      abi: JellyBeansAbi,
+      address: "0x78A205406e2849b04D6c8497e6dd8A4Aee080Bf4",
       network: "optimismSepolia",
-      startBlock: 17488066,
+      startBlock: 18095104,
     },
   },
 });
