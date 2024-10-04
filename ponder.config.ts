@@ -13,9 +13,9 @@ export default createConfig({
   contracts: {
     Jellybeans: {
       abi: JellyBeansAbi,
-      address: "0x5BeB1131Fe1d69a1b178E65768B33BB15162e384",
+      address: "0x9A34acbf83753c9a87D3b8EC721867146e67eBdC",
       network: "optimism",
-      startBlock: 126228120,
+      startBlock: 126229322,
     },
   },
 });
