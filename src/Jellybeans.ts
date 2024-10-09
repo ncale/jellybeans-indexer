@@ -71,7 +71,7 @@ ponder.on("Jellybeans:WinnerSelected", async ({ event, context }) => {
   const { Round } = context.db;
 
   try {
-    Round.update({
+    await Round.update({
       id: event.args.roundId,
       data: {
         correctAnswer: event.args.correctAnswer,
