@@ -50,7 +50,7 @@ ponder.on("Jellybeans:GuessSubmitted", async ({ event, context }) => {
     const data = await Round.findUnique({ id: event.args.roundId });
     if (!data) {
       throw new Error(
-        `Failed GuessSubmitted; Error finding round ${event.args.roundId}`
+        `Failed GuessSubmitted; Error finding round ${event.args.roundId}`,
       );
     }
 
