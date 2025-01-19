@@ -10,10 +10,10 @@
     "lint": "npx eslint . --ext .ts,.tsx",
     "typecheck": "tsc",
     "format": "prettier --write .",
-    "clean": "rm -rf .ponder && rm -rf node_modules && rm -rf yarn.lock"
+    "clean": "rm -rf .ponder && rm -rf generated && rm -rf node_modules && rm -rf yarn.lock"
   },
   "dependencies": {
-    "@ponder/core": "0.6.0",
+    "@ponder/core": "0.7",
     "hono": "^4.5.0",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",

@@ -1,29 +1,27 @@
-import { createSchema } from "@ponder/core";
+import { onchainTable } from "@ponder/core";
 
-export default createSchema((p) => ({
-  Round: p.createTable({
-    id: p.bigint(),
-    question: p.string().optional(),
-    submissionDeadline: p.bigint(),
-    potAmount: p.bigint(),
-    decimals: p.int(),
-    numWinners: p.int(),
-    feeAmount: p.bigint(),
-    initRoundTxnHash: p.hex(),
-    submissions: p.many("Submission.roundId"),
-    submissionCount: p.int(),
-    correctAnswer: p.bigint(),
-    winningAnswer: p.bigint(),
-    winners: p.hex().list(),
-    isFinalized: p.boolean(),
-    setCorrectAnswerTxnHash: p.hex().optional(),
-  }),
-  Submission: p.createTable({
-    id: p.hex(),
-    roundId: p.bigint().references("Round.id"),
-    submitter: p.hex(),
-    entry: p.bigint(),
-    timestamp: p.bigint(),
-    txnHash: p.hex(),
-  }),
+export const round = onchainTable("Round", (p) => ({
+  id: p.bigint().primaryKey(),
+  question: p.text(), // optional
+  submissionDeadline: p.bigint().notNull(),
+  potAmount: p.bigint().notNull(),
+  decimals: p.integer().notNull(),
+  numWinners: p.integer().notNull(),
+  feeAmount: p.bigint().notNull(),
+  initRoundTxnHash: p.hex().notNull(),
+  submissionCount: p.integer().notNull(),
+  correctAnswer: p.bigint(),
+  winningAnswer: p.bigint(),
+  winners: p.hex().array(),
+  isFinalized: p.boolean().notNull().default(false),
+  setCorrectAnswerTxnHash: p.hex(), // optional
+}));
+
+export const submission = onchainTable("Submission", (p) => ({
+  id: p.hex().notNull().primaryKey(),
+  roundId: p.bigint().notNull(), // foreign key to rounds.id
+  submitter: p.hex().notNull(),
+  entry: p.bigint().notNull(),
+  timestamp: p.bigint().notNull(),
+  txnHash: p.hex().notNull(),
 }));
