@@ -13,11 +13,11 @@
     "clean": "rm -rf .ponder && rm -rf node_modules && rm -rf yarn.lock"
   },
   "dependencies": {
-    "@ponder/core": "^0.5.24",
+    "@ponder/core": "0.6.0",
     "hono": "^4.5.0",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
-    "viem": "^1.19.3"
+    "viem": "^2.22.10"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
